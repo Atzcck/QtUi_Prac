@@ -1,6 +1,6 @@
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QAction, QIcon
-from PySide6.QtWidgets import QMainWindow, QToolBar
+from PySide6.QtWidgets import QMainWindow, QToolBar, QPushButton, QStatusBar
 import sys
 
 class MainWindow(QMainWindow):
@@ -43,11 +43,23 @@ class MainWindow(QMainWindow):
 
         # Action 2
         action2 = QAction(QIcon("disk-svgrepo-com.png"), "Action 2", self)
-        action2.setStatusTip("This is Action 2")
+        action2.setStatusTip("Save File")
         action2.setCheckable(True)
         action2.triggered.connect(self.action2_triggered)
         toolbar.addAction(action2)
+        action2.triggered.connect(self.statusBarMessage)
 
+        # Adding seperator
+        toolbar.addSeparator()
+        toolbar.addWidget(QPushButton("Click Me!"))
+
+        # Adding Status Bar
+        statusBar = QStatusBar(self)
+        self.setStatusBar(statusBar)
+
+    def statusBarMessage(self):
+        self.statusBar().showMessage("File Saved", 3000)
+        
     def action1_triggered(self):
         print("Action 1 triggered")
 
