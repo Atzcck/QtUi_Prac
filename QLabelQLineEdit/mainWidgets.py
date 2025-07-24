@@ -16,11 +16,10 @@ class qWidget(QWidget):
         label = QLabel("Fullname:")
         h_layout.addWidget(label)
 
-        # Submitted text
-        label2 = QLabel(self.submitted_text)
-
         # Create a line edit
         line_edit = QLineEdit()
+        line_edit.setPlaceholderText("Enter your fullname")
+        line_edit.editingFinished.connect(lambda: label2.setText(f"Submitted Text: {line_edit.text()}"))
         h_layout.addWidget(line_edit)
 
         # Add the horizontal layout to the vertical layout
@@ -28,8 +27,10 @@ class qWidget(QWidget):
 
         # Adding Push Button
         button = QPushButton("Submit")
-        button.clicked.connect(self.submit_form)
+        button.clicked.connect(lambda: label2.setText(f"Submitted Text: {line_edit.text()}"))
         v_layout.addWidget(button)
 
-    def submit_form(self):
-        print("Form submitted!")
+        # Submitted text
+        label2 = QLabel(f"Submitted Text:")
+        v_layout.addWidget(label2)
+        self.setLayout(v_layout)
