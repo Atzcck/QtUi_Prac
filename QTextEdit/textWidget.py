@@ -3,42 +3,64 @@ import sys
 
 class textWidget(QWidget):
     def __init__(self):
-        super.__init__()
+        super().__init__()
         self.setWindowTitle("QTextWidget Application")
 
-        text_edit = QTextEdit()
+        self.text_edit = QTextEdit()
 
         # Copy
         copy_button = QPushButton("Copy")
-        copy_button.clicked.connect(self.copy_button_clicked())
+        copy_button.clicked.connect(self.text_edit.copy)
 
         # Cut
         cut_button = QPushButton("Cut")
-        cut_button.clicked.connect(self.cut_button_clicked())
+        cut_button.clicked.connect(self.text_edit.cut)
 
         # Paste
         paste_button = QPushButton("Paste")
-        paste_button.clicked.connect(self.paste_button_clicked())
+        paste_button.clicked.connect(self.text_edit.paste)
 
         # Undo
         undo_button = QPushButton("Undo")
-        undo_button.clicked.connect(self.undo_button_clicked())
+        undo_button.clicked.connect(self.text_edit.undo)
 
         # Redo
         redo_button = QPushButton("Redo")
-        redo_button.clicked.connect(self.redo_button_clicked())
+        redo_button.clicked.connect(self.text_edit.redo)
 
         # Set Plain Text
         set_plain_text_button = QPushButton("Set Plain Text")
-        set_plain_text_button.clicked.connect(self.set_plain_text_button_clicked())
+        set_plain_text_button.clicked.connect(lambda: self.text_edit.setPlainText("lambda is needed to use this correctly. Coz function return value is None when button pressed! \n lambda calling first before function. It's make it 1 computation more iterable!"))
 
         # Set HTML
         set_html_button = QPushButton("HTML")
-        set_html_button.clicked.connect(self.set_html_button_clicked())
+        set_html_button.clicked.connect(lambda: self.text_edit.setHtml("""<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Page</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Page</h1>
+  </header>
+
+  <section>
+    <p>This is the first line of content.</p>
+  </section>
+
+  <section>
+    <p>This is the second line of content.</p>
+  </section>
+
+  <section>
+    <p>This is the third line of content.</p>
+  </section>
+</body>
+</html>"""))
 
         # Clear
         clear_button = QPushButton("Clear")
-        clear_button.clicked.connect(self.clear_button_clicked())
+        clear_button.clicked.connect(self.text_edit.clear)
 
 
         h_layout = QHBoxLayout()
@@ -53,24 +75,6 @@ class textWidget(QWidget):
 
         v_layout = QVBoxLayout()
         v_layout.addLayout(h_layout)
-        v_layout.addWidget(text_edit)
+        v_layout.addWidget(self.text_edit)
 
-    #def copy_button_clicked():
-        
-    #def cut_button_clicked():
-        
-    #def paste_button_clicked():
-    
-    #def undo_button_clicked():
-    
-    #def redo_button_clicked():
-    
-    #def set_plain_text_button_clicked():
-
-    #def set_html_button_clicked():
-    
-    #def clear_button_clicked():
-
-
-        
-
+        self.setLayout(v_layout)
