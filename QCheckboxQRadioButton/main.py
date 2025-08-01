@@ -1,11 +1,11 @@
 from PySide6.QtWidgets import QApplication, QWidget
 import sys
 
-from CheckboxWidget import CheckboxWidget
+from mainWindow import MainWindow
 
 app = QApplication(sys.argv)
 
-window = CheckboxWidget()
+window = MainWindow()
 window.show()
 
 app.exec()
