@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QCheckBox, QVBoxLayout, QGroupBox, QHBoxLayout
+from PySide6.QtWidgets import QWidget, QCheckBox, QVBoxLayout, QGroupBox, QHBoxLayout, QButtonGroup
 import sys
 
 class CheckboxWidget(QWidget):
@@ -9,7 +9,7 @@ class CheckboxWidget(QWidget):
         drink_layout = QVBoxLayout()
 
         os_checkbox_group = QGroupBox("Select Your OS", self)
-        drink_checkbox_group = QGroupBox("Select Your Drink", self)
+        drink_checkbox_group = QGroupBox("Select Your Drink", self,)
 
         checkbox_1 = QCheckBox("Windows")
         checkbox_2 = QCheckBox("Linux")
@@ -19,20 +19,13 @@ class CheckboxWidget(QWidget):
         checkbox_5 = QCheckBox("Tea")
         checkbox_6 = QCheckBox("Beer")
         
-        # Exclusive checkboxes for drinks
-        if checkbox_4.isChecked() == True and checkbox_5.isChecked() == False and checkbox_6.isChecked() == False:
-            checkbox_5.setChecked(False)
-            checkbox_6.setChecked(False)
-        elif checkbox_5.isChecked() == True and checkbox_4.isChecked() == False and checkbox_6.isChecked() == False:
-            checkbox_4.setChecked(False)
-            checkbox_6.setChecked(False)
-        elif checkbox_6.isChecked() == True and checkbox_4.isChecked() == False and checkbox_5.isChecked() == False:
-            checkbox_4.setChecked(False)
-            checkbox_5.setChecked(False)
-        else:
-            checkbox_4.setChecked(False)
-            checkbox_5.setChecked(False)
-            checkbox_6.setChecked(False)
+
+        drinks = QButtonGroup(self)
+        drinks.addButton(checkbox_4)
+        drinks.addButton(checkbox_5)
+        drinks.addButton(checkbox_6)
+        drinks.setExclusive(True)
+        checkbox_4.setChecked(True)
 
         os_layout.addWidget(checkbox_1)
         os_layout.addWidget(checkbox_2)

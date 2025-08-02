@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QWidget, QMainWindow, QVBoxLayout, QHBoxLayout
+from PySide6.QtWidgets import QApplication, QWidget, QMainWindow, QVBoxLayout, QHBoxLayout, QSizePolicy
 import sys
 from CheckboxWidget import CheckboxWidget
 from RadiobutWidget import RadioButtonWidget
@@ -8,6 +8,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("QCheckbox and QRadioButton Example")
+        self.setGeometry(100, 100, 600, 400)
 
         check_box_widget = CheckboxWidget()
         radio_button_widget = RadioButtonWidget()
